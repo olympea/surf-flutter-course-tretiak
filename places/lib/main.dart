@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,7 +15,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MySecondWidget(), //MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -65,6 +67,53 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class MyFirstWidget extends StatelessWidget {
+  int _counter = 0;
+
+  MyFirstWidget(){
+    print("widget constructor");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _counter += 1;
+    print("counter: $_counter");
+    return Container(
+      child: Center(
+        child: Text('Hello!'),
+      ),
+    );
+  }
+}
+
+class MySecondWidget extends StatefulWidget {
+  @override
+  _MySecondWidgetState createState() => _MySecondWidgetState();
+
+  MySecondWidget(){
+    print("widget constructor");
+  }
+}
+
+class _MySecondWidgetState extends State<MySecondWidget> {
+  int _counter = 0;
+
+  _MySecondWidgetState(){
+    print("state constructor");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _counter += 1;
+    print("counter: $_counter");
+    return Container(
+      child: Center(
+        child: Text('Hello!'),
+      ),
     );
   }
 }
