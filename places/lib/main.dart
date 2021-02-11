@@ -3,7 +3,7 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(App());
 }
 
 class MyApp extends StatelessWidget {
@@ -15,10 +15,19 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MySecondWidget(), //MyHomePage(title: 'Flutter Demo Home Page'),
+      home:MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
+class App extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return  MaterialApp(
+      home: MySecondWidget(),
+    );
+  }
+}
+
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -88,6 +97,7 @@ class MyFirstWidget extends StatelessWidget {
       ),
     );
   }
+
 }
 
 class MySecondWidget extends StatefulWidget {
@@ -112,8 +122,10 @@ class _MySecondWidgetState extends State<MySecondWidget> {
     print("counter: $_counter");
     return Container(
       child: Center(
-        child: Text('Hello!'),
+        child: Text('Hello! $getRunTimeType'),
       ),
     );
   }
+
+  Type getRunTimeType() => context.runtimeType;
 }
