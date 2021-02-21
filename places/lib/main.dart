@@ -1,7 +1,9 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(App());
 }
 
 class MyApp extends StatelessWidget {
@@ -13,10 +15,19 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home:MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
+class App extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return  MaterialApp(
+      home: MySecondWidget(),
+    );
+  }
+}
+
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -67,4 +78,54 @@ class _MyHomePageState extends State<MyHomePage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+}
+
+class MyFirstWidget extends StatelessWidget {
+  int _counter = 0;
+
+  MyFirstWidget(){
+    print("widget constructor");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _counter += 1;
+    print("counter: $_counter");
+    return Container(
+      child: Center(
+        child: Text('Hello!'),
+      ),
+    );
+  }
+
+}
+
+class MySecondWidget extends StatefulWidget {
+  @override
+  _MySecondWidgetState createState() => _MySecondWidgetState();
+
+  MySecondWidget(){
+    print("widget constructor");
+  }
+}
+
+class _MySecondWidgetState extends State<MySecondWidget> {
+  int _counter = 0;
+
+  _MySecondWidgetState(){
+    print("state constructor");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _counter += 1;
+    print("counter: $_counter");
+    return Container(
+      child: Center(
+        child: Text('Hello! $getRunTimeType'),
+      ),
+    );
+  }
+
+  Type getRunTimeType() => context.runtimeType;
 }
